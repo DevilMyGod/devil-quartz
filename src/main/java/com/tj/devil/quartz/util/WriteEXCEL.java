@@ -23,6 +23,7 @@ public class WriteEXCEL {
 	 * sheet名字
 	 */
 	private String sheetTitle ;
+	private HSSFWorkbook workbook ;
 	private SimpleDateFormat dateFormat ;
 	private LinkedHashMap<String,String> keyTitle ;
 	/**
@@ -31,10 +32,11 @@ public class WriteEXCEL {
 	 * @param sheetTitle sheet名字
 	 * @param dateFormat 日期类型
 	 */
-	public WriteEXCEL(String excelName, String sheetTitle, String dateFormat){
+	public WriteEXCEL(String excelName, String sheetTitle, String dateFormat, HSSFWorkbook workbook){
 		this.excelName = excelName ;
 		this.sheetTitle = sheetTitle ;
 		this.dateFormat = new SimpleDateFormat(dateFormat) ;
+		this.workbook = workbook;
 	}
 
 	/**
@@ -76,8 +78,8 @@ public class WriteEXCEL {
 
 	private <E> void write(List<E> dataList, LinkedHashMap<String,String> keyTitle, String sheetName, OutputStream out) {
 		this.keyTitle = keyTitle;
-		// 声明一个工作薄
-		HSSFWorkbook workbook = new HSSFWorkbook();
+//		// 声明一个工作薄
+//		HSSFWorkbook workbook = new HSSFWorkbook();
 		// 生成一个表格
 		sheetTitle = sheetName==null?sheetTitle:sheetName;
 		HSSFSheet sheet = workbook.createSheet(sheetTitle);
